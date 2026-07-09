@@ -1,0 +1,63 @@
+import org.siouan.frontendgradleplugin.infrastructure.gradle.RunYarnTaskType
+
+plugins {
+    id 'org.siouan.frontend-jdk17' version '10.0.0'
+    id 'org.openapi.generator' version '7.23.0'
+}
+
+frontend {
+    verboseModeEnabled = true
+    nodeDistributionProvided = true
+
+    if (!System.getenv("NODE_PATH")) {
+        if (System.getenv("NVM_BIN")) {
+            nodeInstallDirectory = file("${System.getenv("NVM_BIN")}/../")
+        } else {
+            logger.warn("NodeJS was not found in either NODE_PATH or NVM_BIN environment variable. This will cause Gradle frontend plugin to download NodeJS. This is only suitable for CI and Docker builds.")
+            nodeDistributionProvided = false
+            nodeVersion = new File("$rootDir/.nvmrc").text.trim().replaceFirst("^v?", "")
+        }
+    } else {
+        nodeInstallDirectory = file(System.getenv("NODE_PATH"))
+    }
+
+    installScript = 'install --immutable'
+    assembleScript = 'run build'
+    checkScript = 'run check'
+}
+
+clean {
+    delete "${projectDir}/src/generated/"
+}
+
+openApiGenerate {
+    generatorName = "typescript-fetch"
+    inputSpec = "$rootDir/api/site-v1.yml"
+    outputDir = "$projectDir/src/generated"
+    configOptions = [
+            supportsES6: "true",
+            typescriptThreePlus: "true",
+            useSingleRequestParameter: "false"
+    ]
+    globalProperties = [
+            apis: "",
+            models: "",
+            supportingFiles: "runtime.ts,index.ts"
+    ]
+}
+assembleFrontend.dependsOn tasks.openApiGenerate
+checkFrontend.dependsOn tasks.openApiGenerate
+
+assembleFrontend {
+    inputs.dir("${projectDir}/src")
+    outputs.dir("${projectDir}/dist")
+}
+
+tasks.register('cleanFrontend', RunYarnTaskType) {
+    dependsOn tasks.installFrontend
+    args.set('run clean')
+}
+
+tasks.named('clean') {
+    dependsOn tasks.cleanFrontend
+}

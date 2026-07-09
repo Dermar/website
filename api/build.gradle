@@ -1,0 +1,18 @@
+plugins {
+    id 'org.openapi.generator' version '7.23.0'
+    id 'com.diffplug.spotless' version '8.8.0'
+}
+
+openApiGenerate {
+    generatorName = "openapi"
+    inputSpec = "$projectDir/site-v1.yml"
+    outputDir = "$projectDir/build"
+}
+
+spotless {
+    yaml {
+        target '**/*.yml'
+        prettier(['prettier': '3.9.4'])
+                .config(['parser': 'yaml'])
+    }
+}

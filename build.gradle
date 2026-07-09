@@ -1,0 +1,15 @@
+def javaProjects = [
+        project(":application")
+]
+
+configure(javaProjects) {
+    apply plugin: 'application'
+    version '1.0.0'
+    repositories {
+        mavenCentral()
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

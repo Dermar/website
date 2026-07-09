@@ -1,0 +1,17 @@
+openapi: 3.0.2
+
+info:
+  version: 1.0.0
+  title: Marian's Website REST API
+  description: OpenAPI specification for Marian's personal website
+  contact:
+    email: marianderias@gmail.com
+    url: https://www.linkedin.com/in/marian-derias/
+
+tags:
+  - name: Nothing
+    description: Generates nothing
+
+paths:
+  /nothing/generate:
+    $ref: "paths/nothing.yml"

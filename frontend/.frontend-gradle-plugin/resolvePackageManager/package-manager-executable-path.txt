@@ -1,0 +1,1 @@
+/Users/marian.derias/.nvm/versions/node/v24.0.2/bin/yarn

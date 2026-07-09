@@ -1,0 +1,8 @@
+get:
+  tags:
+    - Nothing
+  operationId: getNothing
+  description: Gets nothing, just a placeholder
+  responses:
+    "200":
+      description: OK

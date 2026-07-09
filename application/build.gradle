@@ -1,0 +1,30 @@
+plugins {
+    id 'org.springframework.boot' version '4.1.0'
+    id 'java'
+    id 'checkstyle'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+springBoot {
+    mainClass = 'application.MarianSite'
+}
+
+checkstyle {
+    configFile = "$rootDir/checkstyle.xml" as File
+    ignoreFailures = false
+    maxWarnings = 0
+    toolVersion = '13.7.0'
+}
+
+processResources {
+    dependsOn ':frontend:assemble'
+    from("${project(':frontend').projectDir}/dist") {
+        into 'static'
+    }
+}
