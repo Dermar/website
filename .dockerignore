@@ -1,0 +1,20 @@
+# Build outputs & caches — regenerated inside the image, never copy host copies
+build/
+**/build/
+.gradle/
+**/node_modules/
+frontend/dist/
+
+# VCS & tooling
+.git/
+.github/
+.idea/
+.vscode/
+
+# Local/secret & platform config not needed in the image
+.env*
+.vercel/
+vercel.json
+
+# OS cruft
+**/.DS_Store
