@@ -25,14 +25,30 @@
     "yarn": ">=4.0.0"
   },
   "dependencies": {
+    "@vanilla-extract/css": "^1.21.1",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "react-router": "^8.2.0"
   },
   "devDependencies": {
+    "@eslint/compat": "^2.1.0",
+    "@eslint/eslintrc": "^3.3.6",
+    "@eslint/js": "^9.39.5",
+    "@tanstack/eslint-plugin-query": "^5.66.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "@typescript-eslint/eslint-plugin": "^8.24.0",
+    "@typescript-eslint/parser": "^8.24.0",
+    "@vanilla-extract/vite-plugin": "^5.2.4",
     "@vitejs/plugin-react": "^6.0.3",
-    "eslint": "^10.6.0",
+    "@vitest/eslint-plugin": "^1.6.23",
+    "eslint": "^9.20.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-testing-library": "^7.1.1",
+    "globals": "^17.7.0",
     "prettier": "^3.9.4",
     "shx": "^0.4.0",
     "typescript": "^5.9.3",

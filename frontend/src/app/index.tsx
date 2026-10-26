@@ -1,13 +1,16 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
-import App from './App';
+import "./index.css";
 
-const container = document.getElementById('root');
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+
+import { AppRoutes } from "./routes";
+import '../shared/styles/globalStyle.css';
+
+const container = document.getElementById("root");
 const root = createRoot(container!);
 
 root.render(
   <StrictMode>
-    <App />
-  </StrictMode>
+    <AppRoutes/>
+  </StrictMode>,
 );
